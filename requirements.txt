@@ -1,4 +1,4 @@
-cssmin==0.2.0
+csscompressor==0.9.5
 ply==3.4
 slimit==0.8.1
 smartypants==1.8.6

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import codecs
 import getpass
-import glob
 import json
 import os
 import requests
@@ -9,13 +8,12 @@ import shutil
 import re
 
 from clint.textui import colored, puts
-from cssmin import cssmin
+from csscompressor import compress
 from flask import g, Blueprint
 from flask_frozen import walk_directory
 from jinja2 import Markup
 from slimit import minify
 from smartypants import smartypants
-from shutil import copytree, ignore_patterns
 from tarbell.hooks import register_hook
 from tarbell.utils import ensure_directory
 
@@ -119,8 +117,7 @@ class CSSIncluder(Includer):
 
         for src in self.includes:
             with codecs.open(self._get_path(src), encoding='utf-8') as f:
-                output.append(cssmin(f.read()))
-
+                output.append(compress(f.read()))
         return '\n'.join(output)
 
 
